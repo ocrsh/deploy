@@ -64,7 +64,10 @@ tolerations: []
 
 affinity: {}
 
-extraEnv: []
+metrics:
+  serviceMonitor:
+    enabled: false
+    interval: 10s
 
 extraVolumes:
   - name: data
@@ -88,8 +91,8 @@ config:
   storage:
     cache:
       blobdescriptor: inmemory
-    filesystem:
-      rootdirectory: /var/lib/registry
+#    filesystem:
+#      rootdirectory: /var/lib/registry
   http:
     addr: :5000
     debug:
@@ -99,10 +102,10 @@ config:
         path: /metrics
     headers:
       X-Content-Type-Options: [nosniff]
-  auth:
-    htpasswd:
-      realm: basic-realm
-      path: /etc/registry
+#  auth:
+#    htpasswd:
+#      realm: basic-realm
+#      path: /etc/registry
   health:
     storagedriver:
       enabled: true
